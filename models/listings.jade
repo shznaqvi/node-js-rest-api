@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  div(id="bodyRoyal")
+   table(border='1')
+       thead
+each field in fields
+	tr: th=field
+   tbody
+each item in items
+     tr
+      td=item.hh01
+      td=item.hh02

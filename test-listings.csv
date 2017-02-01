@@ -1,0 +1,2 @@
+_id,child_name,deviceid,gpsacc,gpslat,gpslng,gpstime,hh01,hh02,hh03,hh04,hh04x,hh05,hh06,hh07,hh08,hh09,hh10,hh11,hh12d,hh12m,hhdt,uid
+16,kashid,ed783f1e724f156c,null,null,null,null,42,44268,10,1,,2,,X,ghalib,99999999999,1,1,null,null,02-11-16 13:05,null

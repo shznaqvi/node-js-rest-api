@@ -1,3 +1,4 @@
+// *genric*
 var districts = require('./models/districts');
 var listings = require('./models/listings');
 var forms = require('./models/forms');
@@ -30,6 +31,14 @@ var mccp_listings = require('./models/mccp/listings');
 var mccp_forms = require('./models/mccp/forms');
 var mccp_psus = require('./models/mccp/psus');
 var mccp_users = require('./models/mccp/users');
+
+// CBT
+var cbt_tehsils = require('./models/cbt/tehsils');
+var cbt_ucs = require('./models/cbt/ucs');
+var cbt_villages = require('./models/cbt/villages');
+var cbt_hfacilities = require('./models/cbt/hfacilities');
+var cbt_lhws = require('./models/cbt/lhws');
+
 
 
 module.exports = {
@@ -545,5 +554,125 @@ module.exports = {
 			mccp_users.delete(req.params.id, res);
 		});
 		
+		/*---------------*/
+		/*               */
+		/* CBT MODELS */
+		/*               */
+		/*---------------*/		
+			
+		// CBT tehsils
+		app.get('/cbt/tehsils/', function(req, res){
+			cbt_tehsils.get(res);
+		});
+		
+		app.get('/cbt/tehsils/:id', function(req, res){
+			cbt_tehsils.getbyid(req.params.id, res);
+		});
+		
+		app.post('/cbt/tehsils/', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_tehsils.create(req.body, res);
+		});
+		
+		app.put('/cbt/tehsils', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_tehsils.update(req.body, res);
+		});
+		
+		app.delete('/cbt/tehsils/:id', function(req, res){
+			cbt_tehsils.delete(req.params.id, res);
+		});
+			
+		// CBT ucs
+		app.get('/cbt/ucs/', function(req, res){
+			cbt_ucs.get(res);
+		});
+		
+		app.get('/cbt/ucs/:id', function(req, res){
+			cbt_ucs.getbyid(req.params.id, res);
+		});
+		
+		app.post('/cbt/ucs/', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_ucs.create(req.body, res);
+		});
+		
+		app.put('/cbt/ucs', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_ucs.update(req.body, res);
+		});
+		
+		app.delete('/cbt/ucs/:id', function(req, res){
+			cbt_ucs.delete(req.params.id, res);
+		});
+		
+		// CBT villages
+		app.get('/cbt/villages/', function(req, res){
+			cbt_villages.get(res);
+		});
+		
+		app.get('/cbt/villages/:id', function(req, res){
+			cbt_villages.getbyid(req.params.id, res);
+		});
+		
+		app.post('/cbt/villages/', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_villages.create(req.body, res);
+		});
+		
+		app.put('/cbt/villages', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_villages.update(req.body, res);
+		});
+		
+		app.delete('/cbt/villages/:id', function(req, res){
+			cbt_villages.delete(req.params.id, res);
+		});
+			
+		// CBT hfacilities
+		app.get('/cbt/hfacilities/', function(req, res){
+			cbt_hfacilities.get(res);
+		});
+		
+		app.get('/cbt/hfacilities/:id', function(req, res){
+			cbt_hfacilities.getbyid(req.params.id, res);
+		});
+		
+		app.post('/cbt/hfacilities/', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_hfacilities.create(req.body, res);
+		});
+		
+		app.put('/cbt/hfacilities', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_hfacilities.update(req.body, res);
+		});
+		
+		app.delete('/cbt/hfacilities/:id', function(req, res){
+			cbt_hfacilities.delete(req.params.id, res);
+		});
+			
+		// CBT lhws
+		app.get('/cbt/lhws/', function(req, res){
+			cbt_lhws.get(res);
+		});
+		
+		app.get('/cbt/lhws/:id', function(req, res){
+			cbt_lhws.getbyid(req.params.id, res);
+		});
+		
+		app.post('/cbt/lhws/', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_lhws.create(req.body, res);
+		});
+		
+		app.put('/cbt/lhws', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_lhws.update(req.body, res);
+		});
+		
+		app.delete('/cbt/lhws/:id', function(req, res){
+			cbt_lhws.delete(req.params.id, res);
+		});
 	}
 };

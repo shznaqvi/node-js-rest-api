@@ -1,4 +1,4 @@
-var connection = require('../../mccpconn');
+var connection = require('../../cbtconn');
 var util = require('util');
 var fs = require('fs');
 

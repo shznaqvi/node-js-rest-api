@@ -8,7 +8,7 @@ function Connection(){
 			//connectionLimit: 10,
 			host: 'localhost',
 			user: 'root',
-			password: '',
+			password: 'abcd1234',
 			database: 'enrich_lisitng'
 		});
 	};

@@ -42,6 +42,7 @@ var cbt_listings = require('./models/cbt/listings');
 var cbt_children = require('./models/cbt/children');
 var cbt_clusterinfo = require('./models/cbt/clusterinfo');
 var cbt_pws = require('./models/cbt/pws');
+var cbt_users = require('./models/cbt/users');
 
 
 
@@ -769,6 +770,29 @@ module.exports = {
 		
 		app.delete('/cbt/pws/:id', function(req, res){
 			cbt_pws.delete(req.params.id, res);
+		});
+		
+		// CBT users
+		app.get('/cbt/users/', function(req, res){
+			cbt_users.get(res);
+		});
+		
+		app.get('/cbt/users/:id', function(req, res){
+			cbt_users.getbyid(req.params.id, res);
+		});
+		
+		app.post('/cbt/users/', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_users.create(req.body, res);
+		});
+		
+		app.put('/cbt/users', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_users.update(req.body, res);
+		});
+		
+		app.delete('/cbt/users/:id', function(req, res){
+			cbt_users.delete(req.params.id, res);
 		});
 		
 	}

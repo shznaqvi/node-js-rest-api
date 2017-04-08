@@ -2,35 +2,27 @@ var connection = require('../../mccpconn');
 var util = require('util');
 var fs = require('fs');
 
-function Forms() {
+function Listings() {
 	this.get = function(res){
-		    var data = [];
-
 		connection.acquire(function(err, con){
-
-			con.query('SELECT * FROM listings', function(err, rows, fields){
-				        res.render('listings', {
-          items: rows,
-		  headers: fields
-        });
+			con.query('SELECT * FROM listings', function(err, result){
 				con.release();
+				res.send(result);
 			});
 		});
 	};
-	this.getbypsu = function(pid, res){
+	this.getbyid = function(listingno, res){
 		connection.acquire(function(err, con){
-			con.query('SELECT * FROM listings where hh03 = ?', pid , function(err, rows, fields){
+			con.query('SELECT * FROM listings where tab_listing_no = ?', listingno , function(err, result){
 				con.release();
-				res.send({
-          items: rows
-        });
+				res.send(result);
 			});
 		});
 	};
 	
 	
-	this.create = function(form, res){
-		fs.appendFile("./listings.json", new Date+" - "+JSON.stringify(form)+"\r\n", function(err) {
+	this.create = function(listing, res){
+		fs.appendFile("./listings.json", new Date+" - "+JSON.stringify(listing)+"\r\n", function(err) {
     if(err) {
         return console.log(err);
     }
@@ -41,8 +33,8 @@ var errMsg = 'Listings updated successfully';
 var errStatus = 0;
 		connection.acquire(function(err, con){
 			
-			for (i=0;i<form.length;i++){
-			con.query('INSERT INTO listings SET ?', form[i], function(err, result){
+			for (i=0;i<listing.length;i++){
+			con.query('INSERT INTO listings SET ?', listing[i], function(err, result){
 				//if (err) throw err;
 				 if(err) {
 				errMsg = err;
@@ -50,24 +42,24 @@ var errStatus = 0;
         return console.log(err);
 		        
 
-    }//res.status(201).send("Message: " + form[i].hh01);
+    }//res.status(201).send("Message: " + listing[i].hh01);
 			});
 			};
 			
 					res.send({status: errStatus, message: errMsg});
-										console.log("DATA: "+util.inspect(form, false, null)+" ERROR: "+err);
+										console.log("DATA: "+util.inspect(listing, false, null)+" ERROR: "+err);
 					con.release();
 				
 		}); 
 	};
 	
-	this.update = function(form, res){
+	this.update = function(listing, res){
 		connection.acquire(function(err, con){
-			con.query('UPDATE listings SET ? where tab_form_no = ?', [form, form.formno], function(err, result){
+			con.query('UPDATE listings SET ? where tab_listing_no = ?', [listing, listing.listingno], function(err, result){
 				con.release();
 				if(err){
 					res.send({status: 1, message: 'Listings update failed'});
-					console.log("DATA: "+form+" ERROR: "+err);
+					console.log("DATA: "+listing+" ERROR: "+err);
 				} else {
 					res.send({status: 0, message: 'Listings updated successfully'});
 				}
@@ -77,14 +69,14 @@ var errStatus = 0;
 	
 	/* this.update = function(user, res){
 		connection.acquire(function(err, con){
-			console.log(user + " : " + user.idusers );
-			con.query('UPDATE users SET ? WHERE idusers = ?', [user, user.idusers], function(err, result){
+			console.log(user + " : " + user.idlistings );
+			con.query('UPDATE listings SET ? WHERE idlistings = ?', [user, user.idlistings], function(err, result){
 				con.release();
 				if (err){
-					res.send({status: 1, message: 'USERs update failed'});
+					res.send({status: 1, message: 'listings update failed'});
 					console.log(err);
 				} else {
-					res.send({status: 0, message: 'USERs updated successfully'})
+					res.send({status: 0, message: 'listings updated successfully'})
 				}
 			});
 		});
@@ -92,7 +84,7 @@ var errStatus = 0;
 	 */
 	this.delete = function(fromno, res) {
 		connection.acquire(function(err, con){
-			con.query('DELETE FROM users WHERE tab_form_no = ?', [formno], function(err, result){
+			con.query('DELETE FROM listings WHERE tab_listing_no = ?', [listingno], function(err, result){
 				con.release();
 				if(err){
 					res.send({status: 1, message:'Failed to delete'});
@@ -105,4 +97,4 @@ var errStatus = 0;
 	};
 	
 }
-module.exports = new Forms();
+module.exports = new Listings();

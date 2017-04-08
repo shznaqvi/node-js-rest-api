@@ -38,6 +38,10 @@ var cbt_ucs = require('./models/cbt/ucs');
 var cbt_villages = require('./models/cbt/villages');
 var cbt_hfacilities = require('./models/cbt/hfacilities');
 var cbt_lhws = require('./models/cbt/lhws');
+var cbt_listings = require('./models/cbt/listings');
+var cbt_children = require('./models/cbt/children');
+var cbt_clusterinfo = require('./models/cbt/clusterinfo');
+var cbt_pws = require('./models/cbt/pws');
 
 
 
@@ -674,5 +678,98 @@ module.exports = {
 		app.delete('/cbt/lhws/:id', function(req, res){
 			cbt_lhws.delete(req.params.id, res);
 		});
+		
+		// CBT listings
+		app.get('/cbt/listings/', function(req, res){
+			cbt_listings.get(res);
+		});
+		
+		app.get('/cbt/listings/:id', function(req, res){
+			cbt_listings.getbyid(req.params.id, res);
+		});
+		
+		app.post('/cbt/listings/', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_listings.create(req.body, res);
+		});
+		
+		app.put('/cbt/listings', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_listings.update(req.body, res);
+		});
+		
+		app.delete('/cbt/listings/:id', function(req, res){
+			cbt_listings.delete(req.params.id, res);
+		});
+		
+		// CBT children
+		app.get('/cbt/children/', function(req, res){
+			cbt_children.get(res);
+		});
+		
+		app.get('/cbt/children/:id', function(req, res){
+			cbt_children.getbyid(req.params.id, res);
+		});
+		
+		app.post('/cbt/children/', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_children.create(req.body, res);
+		});
+		
+		app.put('/cbt/children', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_children.update(req.body, res);
+		});
+		
+		app.delete('/cbt/children/:id', function(req, res){
+			cbt_children.delete(req.params.id, res);
+		});
+		
+		// CBT clusterinfo
+		app.get('/cbt/clusterinfo/', function(req, res){
+			cbt_clusterinfo.get(res);
+		});
+		
+		app.get('/cbt/clusterinfo/:id', function(req, res){
+			cbt_clusterinfo.getbyid(req.params.id, res);
+		});
+		
+		app.post('/cbt/clusterinfo/', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_clusterinfo.create(req.body, res);
+		});
+		
+		app.put('/cbt/clusterinfo', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_clusterinfo.update(req.body, res);
+		});
+		
+		app.delete('/cbt/clusterinfo/:id', function(req, res){
+			cbt_clusterinfo.delete(req.params.id, res);
+		});
+		
+		// CBT pws
+		app.get('/cbt/pws/', function(req, res){
+			cbt_pws.get(res);
+		});
+		
+		app.get('/cbt/pws/:id', function(req, res){
+			cbt_pws.getbyid(req.params.id, res);
+		});
+		
+		app.post('/cbt/pws/', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_pws.create(req.body, res);
+		});
+		
+		app.put('/cbt/pws', function(req, res){
+			//console.log("ROUTES: "+req.body);
+			cbt_pws.update(req.body, res);
+		});
+		
+		app.delete('/cbt/pws/:id', function(req, res){
+			cbt_pws.delete(req.params.id, res);
+		});
+		
 	}
 };

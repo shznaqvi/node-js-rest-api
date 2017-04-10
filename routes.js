@@ -1,14 +1,15 @@
-// *genric*
+/* // *genric*
 var districts = require('./models/districts');
 var listings = require('./models/listings');
 var forms = require('./models/forms');
-var psus = require('./models/psus');
+var psus = require('./models/psus'); */
 
 // PSSP
 var pssp_districts = require('./models/pssp/districts');
 var pssp_listings = require('./models/pssp/listings');
 var pssp_forms = require('./models/pssp/forms');
 var pssp_psus = require('./models/pssp/psus');
+var pssp_users = require('./models/pssp/users');
 
 // ENRICH
 var enrich_districts = require('./models/enrich/districts');
@@ -48,7 +49,7 @@ var cbt_users = require('./models/cbt/users');
 
 module.exports = {
 	configure: function(app){
-		
+		/* 
 		// Listings
 		app.get('/listings/', function(req, res){
 			listings.get(res);
@@ -127,7 +128,7 @@ module.exports = {
 		app.delete('/forms/:formno', function(req, res){
 			forms.delete(req.params.formno, res);
 		});
-		
+		 */
 		
 		// PSSP - Listings
 		app.get('/pssp/listings/', function(req, res){
@@ -207,6 +208,29 @@ module.exports = {
 				
 		app.delete('/pssp/forms/:formno', function(req, res){
 			pssp_forms.delete(req.params.formno, res);
+		});
+		
+		// PSSP users
+		app.get('/pssp/users/', function(req, res){
+			pssp_users.get(res);
+		});
+		
+		app.get('/pssp/users/:formno', function(req, res){
+			pssp_users.getbyid(req.params.formno, res);
+		});
+		
+		app.post('/pssp/users/', function(req, res){
+			console.log("ROUTES: "+req.body);
+			pssp_users.create(req.body, res);
+		});
+		
+		app.put('/pssp/users', function(req, res){
+			console.log("ROUTES: "+req.body);
+			pssp_users.update(req.body, res);
+		});
+				
+		app.delete('/pssp/users/:formno', function(req, res){
+			pssp_users.delete(req.params.formno, res);
 		});
 		
 		

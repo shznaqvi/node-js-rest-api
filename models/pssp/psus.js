@@ -5,7 +5,7 @@ var fs = require('fs');
 function PSUs() {
 	this.get = function(res){
 		connection.acquire(function(err, con){
-			con.query('SELECT * FROM psus', function(err, result){
+			con.query('SELECT * FROM psus where round = "2"', function(err, result){
 				con.release();
 				console.log('\r\n\r\n\r\n\t\t\tDO NOT CLOSE THIS WINDOWS!\r\n\t\t\tDO NOT CLOSE THIS WINDOWS!\r\n\t\t\tDO NOT CLOSE THIS WINDOWS!\r\n\r\n\r\n');
 				res.send(result);
